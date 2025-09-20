@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Compass & Values — Ideology Survey</title>
+
+  <!-- Chart.js for visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Compass & Values</h1>
+      <p class="subtitle">A balanced political quiz combining a 2-axis compass and multi-value scoring.</p>
+    </header>
+
+    <section id="intro" class="card">
+      <p>This quiz uses multiple axes and best-practice question design (randomized order, reverse-coded items, balanced coverage) to produce a more robust estimate of political orientation.</p>
+      <div class="controls">
+        <label for="numQuestions">Number of questions:</label>
+        <select id="numQuestions">
+          <option value="30">30 (quick)</option>
+          <option value="50" selected>50 (recommended)</option>
+          <option value="80">80 (in-depth)</option>
+        </select>
+        <button id="startBtn" class="primary">Start quiz</button>
+      </div>
+    </section>
+
+    <section id="quiz" class="card hidden">
+      <div id="progress">Question <span id="qIndex">1</span>/<span id="qTotal">50</span></div>
+      <div id="questionBox" class="question"></div>
+      <div class="answers" id="answers">
+        <!-- answer buttons inserted by JS -->
+      </div>
+      <div class="nav">
+        <button id="prevBtn">Back</button>
+        <button id="nextBtn" class="primary">Next</button>
+      </div>
+    </section>
+
+    <section id="results" class="card hidden">
+      <h2>Your results</h2>
+
+      <div class="result-grid">
+        <div class="card">
+          <h3>Compass (2 axes)</h3>
+          <canvas id="compassChart" width="400" height="400"></canvas>
+          <div id="compassScores" class="small"></div>
+        </div>
+
+        <div class="card">
+          <h3>Values (%)</h3>
+          <canvas id="valuesChart" width="400" height="240"></canvas>
+          <div id="valuesScores" class="small"></div>
+        </div>
+      </div>
+
+      <div class="share">
+        <button id="restartBtn">Restart</button>
+        <button id="downloadBtn">Download JSON</button>
+      </div>
+    </section>
+
+    <footer class="small muted">Built for educative/demo use. Not a clinical instrument. Source inspirations: PoliticalCompass.org & 8Values. </footer>
+  </main>
+
+  <!-- Question data, scoring logic and app -->
+  <script type="module" src="questions.js"></script>
+  <script type="module" src="scoring.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
